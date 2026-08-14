@@ -1,201 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="icon/wa.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Wan Alif</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    animation: {
-                        'fade-in': 'fadeIn 0.8s ease-in-out',
-                        'slide-up': 'slideUp 0.6s ease-out',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="icon/wa.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wan Alif Wan Norazlan — Fullstack Developer</title>
+<meta name="description" content="Portfolio of Wan Alif Wan Norazlan, a Junior Fullstack Developer specialising in React, Laravel and Inertia.js. Explore projects, experience and skills.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    display: ['Sora', 'sans-serif'],
+                    sans: ['Inter', 'sans-serif'],
+                },
+                colors: {
+                    ink: {
+                        950: '#07080c',
+                        900: '#0b0d13',
+                        800: '#11141c',
+                        700: '#1a1e29',
                     },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '99%': { opacity: '1' }
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' }
-                        },
-                        glow: {
-                            '0%': { boxShadow: '0 0 20px rgba(58, 130, 246, 0.5)' },
-                            '100%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.8)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+                    accent: {
+                        DEFAULT: '#6d6bfb',
+                        light: '#9694ff',
+                        dark: '#5451e0',
+                    },
+                },
+                animation: {
+                    'fade-up': 'fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both',
+                    'blink': 'blink 1s step-end infinite',
+                },
+                keyframes: {
+                    fadeUp: {
+                        '0%': { opacity: '0', transform: 'translateY(16px)' },
+                        '100%': { opacity: '1', transform: 'translateY(0)' },
+                    },
+                    blink: {
+                        '0%, 100%': { opacity: '1' },
+                        '50%': { opacity: '0' },
+                    },
+                },
+            },
+        },
+    };
+</script>
+<style>
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #07080c;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+    }
+    body.loaded { opacity: 1; }
+    h1, h2, h3, h4, .font-display { font-family: 'Sora', sans-serif; }
+
+    /* subtle dot-grid texture */
+    .bg-grid {
+        background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+        background-size: 28px 28px;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0b0d13; }
+    ::-webkit-scrollbar-thumb { background: #33364a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #45485f; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    .nav-link.active { color: #fff; }
+    .nav-link.active .nav-dot { opacity: 1; transform: scale(1); }
+    .nav-dot { opacity: 0; transform: scale(0); transition: all 0.25s ease; }
+
+    .cursor-bar { border-right: 2px solid #9694ff; }
+</style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-white">
+<body class="bg-ink-950 text-slate-300 antialiased">
+
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-black/20 backdrop-blur-lg z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-ink-950/70 backdrop-blur-lg transition-colors" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Wan Alif</span>
+                <a href="#home" class="font-display font-bold text-lg text-white tracking-tight">
+                    Wan<span class="text-accent-light">.</span>Alif
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="#home" class="nav-link relative px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">Home<span class="nav-dot absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent-light"></span></a>
+                    <a href="#about" class="nav-link relative px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">About<span class="nav-dot absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent-light"></span></a>
+                    <a href="#projects" class="nav-link relative px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">Projects<span class="nav-dot absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent-light"></span></a>
+                    <a href="#resume" class="nav-link relative px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">Resume<span class="nav-dot absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent-light"></span></a>
+                    <a href="#contact" class="ml-2 px-4 py-2 text-sm font-semibold rounded-lg bg-white text-ink-950 hover:bg-slate-200 transition-colors">Contact</a>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-colors">Home</a>
-                        <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-colors">About</a>
-                        <a href="#projects" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-colors">Projects</a>
-                        <a href="#resume" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-colors">Resume</a>
-                        <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-colors">Contact</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white" aria-label="Toggle mobile menu">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-slate-300 hover:text-white" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-black/30 backdrop-blur-lg">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#home" class="block px-3 py-2 text-base font-medium hover:text-blue-400 transition-colors">Home</a>
-                <a href="#about" class="block px-3 py-2 text-base font-medium hover:text-blue-400 transition-colors">About</a>
-                <a href="#projects" class="block px-3 py-2 text-base font-medium hover:text-blue-400 transition-colors">Projects</a>
-                <a href="#resume" class="block px-3 py-2 text-base font-medium hover:text-blue-400 transition-colors">Resume</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-medium hover:text-blue-400 transition-colors">Contact</a>
+        <div id="mobile-menu" class="md:hidden hidden border-t border-white/5 bg-ink-950/95">
+            <div class="px-6 py-4 space-y-1">
+                <a href="#home" class="block px-2 py-2.5 text-sm font-medium text-slate-300 hover:text-white transition-colors">Home</a>
+                <a href="#about" class="block px-2 py-2.5 text-sm font-medium text-slate-300 hover:text-white transition-colors">About</a>
+                <a href="#projects" class="block px-2 py-2.5 text-sm font-medium text-slate-300 hover:text-white transition-colors">Projects</a>
+                <a href="#resume" class="block px-2 py-2.5 text-sm font-medium text-slate-300 hover:text-white transition-colors">Resume</a>
+                <a href="#contact" class="block px-2 py-2.5 text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden z-10">
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
-        <div class="text-center z-10 animate-fade-in px-4">
-            <div class="mb-8">
-                <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1 animate-glow">
-                    <div class="w-full h-full rounded-full bg-gray-800 flex items-center justify-center">
-                        <img src="icon/profilepic.jpg" alt="Wan Alif" class="w-full h-full rounded-full object-cover">
+    <!-- Hero -->
+    <section id="home" class="relative min-h-screen flex items-center bg-grid overflow-hidden">
+        <div class="absolute top-0 right-0 w-[36rem] h-[36rem] bg-accent/20 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[28rem] h-[28rem] bg-accent-dark/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 pt-28 pb-16 relative z-10 w-full">
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-3 animate-fade-up">
+                    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 mb-6 text-xs font-medium text-slate-300">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                        </span>
+                        Open to new opportunities
+                    </div>
+                    <h1 class="font-display font-extrabold text-white leading-[1.05] text-4xl sm:text-5xl lg:text-6xl mb-5">
+                        Wan Alif Wan Norazlan
+                    </h1>
+                    <h2 class="text-xl sm:text-2xl text-slate-300 mb-6 h-8 font-medium">
+                        <span id="typed-role" class="cursor-bar pr-0.5"></span>
+                    </h2>
+                    <p class="text-slate-400 max-w-xl leading-relaxed mb-9">
+                        I build fast, accessible web applications with React, Laravel and Inertia.js — turning UI/UX designs into clean, reusable components and wiring them up to real-time data with WebSockets and REST APIs.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-10">
+                        <a href="#projects" class="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-lg font-semibold text-sm transition-colors">
+                            View My Work <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#contact" class="inline-flex items-center gap-2 border border-white/15 hover:border-white/30 hover:bg-white/5 text-white px-6 py-3 rounded-lg font-semibold text-sm transition-colors">
+                            Get In Touch
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="https://www.linkedin.com/in/wan-alif-00014wana/" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 text-slate-400 hover:text-white hover:border-white/25 transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/WanAlif" target="_blank" rel="noopener" aria-label="GitHub" class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 text-slate-400 hover:text-white hover:border-white/25 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:wanalifnorazlan@gmail.com" aria-label="Email" class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 text-slate-400 hover:text-white hover:border-white/25 transition-colors">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 flex justify-center md:justify-end animate-fade-up" style="animation-delay: 0.15s">
+                    <div class="relative">
+                        <div class="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-accent/40 to-transparent blur-2xl"></div>
+                        <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-[2rem] overflow-hidden border border-white/10 bg-ink-800">
+                            <img src="icon/profilepic.jpg" alt="Portrait of Wan Alif Wan Norazlan" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-5 -left-5 bg-ink-900 border border-white/10 rounded-xl px-4 py-3 shadow-xl">
+                            <p class="text-xs text-slate-400">Currently building at</p>
+                            <p class="text-sm font-semibold text-white">Latitude Innovations</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Wan Alif Wan Norazlan
-            </h1>
-            <h2 class="text-2xl md:text-3xl text-gray-300 mb-8">Fullstack Developer</h2>
-            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-12">
-                Passionate about creating innovative solutions and building scalable applications that make a difference.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#projects" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
-                    View My Work
-                </a>
-                <a href="#contact" class="border-2 border-blue-500 hover:bg-blue-500 px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
-                    Get In Touch
-                </a>
-            </div>
         </div>
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
-        </div>
+
+        <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-slate-300 transition-colors" aria-label="Scroll to About section">
+            <i class="fas fa-chevron-down animate-bounce"></i>
+        </a>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-black/20 relative z-20">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">About Me</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
+    <section id="about" class="py-24 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="reveal mb-16">
+                <p class="text-accent-light text-sm font-semibold tracking-widest uppercase mb-3">About Me</p>
+                <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">A bit about how I work</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="animate-slide-up">
-                    <h3 class="text-2xl font-semibold mb-6 text-blue-400">Hello! I'm a motivated fullstack developer.</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Junior Full Stack Developer with a focus on high-performance frontend architecture. Expert in building responsive web applications using React, Laravel, and Inertia.js. Specialized in converting UI/UX designs into clean, modular, and reusable components using Vite and Tailwind CSS. Experienced in developing real-time systems via WebSockets and RESTful APIs, with a commitment to WCAG accessibility standards and optimized application performance.
+
+            <div class="grid md:grid-cols-5 gap-12">
+                <div class="md:col-span-3 reveal">
+                    <p class="text-slate-300 mb-5 leading-relaxed">
+                        I'm a Junior Full Stack Developer with a focus on high-performance frontend architecture. I build responsive web applications using <span class="text-white font-medium">React, Laravel, and Inertia.js</span>, and specialise in converting UI/UX designs into clean, modular, reusable components with Vite and Tailwind CSS.
                     </p>
-                    <p class="text-gray-300 mb-8 leading-relaxed">
-                        When I'm not coding, you can find me exploring new technologies, contributing to open source projects, or sharing knowledge with the developer community.
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        I have hands-on experience developing real-time systems via WebSockets and RESTful APIs, with a commitment to WCAG accessibility standards and optimised application performance. When I'm not coding, you'll find me exploring new technologies, contributing to open source, or sharing what I learn with the developer community.
                     </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-teal-600/20 text-teal-300 px-4 py-2 rounded-full text-sm">PhP/Laravel</span>
-                        <span class="bg-blue-600/20 text-blue-300 px-4 py-2 rounded-full text-sm">JavaScript</span>
-                        <span class="bg-purple-600/20 text-purple-300 px-4 py-2 rounded-full text-sm">React.js</span>
-                        <span class="bg-green-600/20 text-green-300 px-4 py-2 rounded-full text-sm">Node.js</span>
-                        <span class="bg-yellow-600/20 text-yellow-300 px-4 py-2 rounded-full text-sm">Python</span>
-                        <span class="bg-red-600/20 text-red-300 px-4 py-2 rounded-full text-sm">Next.js</span>
-                        <span class="bg-pink-600/20 text-pink-300 px-4 py-2 rounded-full text-sm">Tailwind CSS</span>
-                        <span class="bg-gray-600/20 text-gray-300 px-4 py-2 rounded-full text-sm">WordPress</span>
-                        <span class="bg-teal-600/20 text-teal-300 px-4 py-2 rounded-full text-sm">Angular</span>
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                            <p class="font-display text-2xl font-bold text-white">3+</p>
+                            <p class="text-xs text-slate-500 mt-1">Shipped projects</p>
+                        </div>
+                        <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                            <p class="font-display text-2xl font-bold text-white">9</p>
+                            <p class="text-xs text-slate-500 mt-1">Core technologies</p>
+                        </div>
+                        <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                            <p class="font-display text-2xl font-bold text-white">7</p>
+                            <p class="text-xs text-slate-500 mt-1">Certifications earned</p>
+                        </div>
                     </div>
                 </div>
-                <div class="animate-slide-up">
-                    <div class="bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-8 rounded-2xl backdrop-blur-sm border border-gray-700/50">
-                        <h4 class="text-xl font-semibold mb-6 text-center">Skills</h4>
-                        <div class="space-y-4">
+
+                <div class="md:col-span-2 reveal">
+                    <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+                        <h4 class="font-display font-semibold text-white mb-5">Skills & Stack</h4>
+                        <div class="space-y-5">
                             <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm">Python</span>
-                                    <span class="text-sm">70%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-2">
-                                    <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: 70%"></div>
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2.5">Frontend</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-xs font-medium">JavaScript</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-xs font-medium">React.js</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-xs font-medium">Next.js</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-xs font-medium">Angular</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-xs font-medium">Tailwind CSS</span>
                                 </div>
                             </div>
                             <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm">JavaScript</span>
-                                    <span class="text-sm">85%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-2">
-                                    <div class="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm">ReactJs</span>
-                                    <span class="text-sm">70%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-2">
-                                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 70%"></div>
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2.5">Backend</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-xs font-medium">PHP / Laravel</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-xs font-medium">Node.js</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-xs font-medium">Python</span>
                                 </div>
                             </div>
                             <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm">Tailwind CSS</span>
-                                    <span class="text-sm">85%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-2">
-                                    <div class="bg-gradient-to-r from-yellow-500 to-red-500 h-2 rounded-full" style="width: 85%"></div>
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2.5">Platforms</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-xs font-medium">WordPress</span>
                                 </div>
                             </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm">PHP/Laravel</span>
-                                    <span class="text-sm">85%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-2">
-                                    <div class="bg-gradient-to-r from-green-500 to-yellow-500 h-2 rounded-full" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm">WordPress</span>
-                                    <span class="text-sm">90%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-2">
-                                    <div class="bg-gradient-to-r from-green-500 to-teal-500 h-2 rounded-full" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm">Angular</span>
-                                    <span class="text-sm">70%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-2">
-                                    <div class="bg-gradient-to-r from-teal-500 to-purple-500 h-2 rounded-full" style="width: 70%"></div>
-                                </div>
                         </div>
                     </div>
                 </div>
@@ -204,166 +248,162 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Featured Projects</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
-                <p class="text-gray-400 max-w-2xl mx-auto">Here are some of my recent projects that showcase my skills and passion for development.</p>
+    <section id="projects" class="py-24 border-t border-white/5 bg-ink-900/40">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="reveal mb-16">
+                <p class="text-accent-light text-sm font-semibold tracking-widest uppercase mb-3">Projects</p>
+                <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-4">Featured work</h2>
+                <p class="text-slate-400 max-w-2xl">A few recent projects that show how I turn ideas into working products.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Project 1 -->
-                <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 rounded-2xl p-6 backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
-                    <div class="bg-gradient-to-br from-blue-600 to-purple-600 w-full h-48 rounded-xl mb-6 flex items-center justify-center group-hover:from-blue-500 group-hover:to-purple-500 transition-all duration-300">
-                        <img src="icon/scb.svg" alt="Smart ChatBot" class="w-20 h-20">
+                <div class="reveal group rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-accent/40 transition-colors">
+                    <div class="h-44 overflow-hidden">
+                        <img src="icon/scb.svg" alt="Smart ChatBot preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-blue-400">Smart ChatBot</h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">(Tech: React, JavaScript, Gemini API, HTML, CSS).</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-blue-600/20 text-blue-300 px-3 py-1 rounded-full text-xs">React</span>
-                        <span class="bg-green-600/20 text-green-300 px-3 py-1 rounded-full text-xs">CSS3</span>
-                        <span class="bg-red-600/20 text-red-300 px-3 py-1 rounded-full text-xs">JavaScript</span>
-                    </div>
-                    <div class="flex space-x-4">
-                        <!-- <a href="https://github.com/WanAlif/Smart-ChatBot" class="text-blue-400 hover:text-blue-300 transition-colors"> -->
-                            <!-- <i class="fab fa-github mr-2"></i>Code -->
-                        </a>
-                        <a href="https://scbsmartbot.netlify.app/" class="text-purple-400 hover:text-purple-300 transition-colors">
-                            <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                    <div class="p-6">
+                        <h3 class="font-display text-lg font-semibold text-white mb-2">Smart ChatBot</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">An AI-powered chat assistant built with the Gemini API for natural, responsive conversations.</p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-slate-400 text-xs">React</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-slate-400 text-xs">Gemini API</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-slate-400 text-xs">CSS3</span>
+                        </div>
+                        <a href="https://scbsmartbot.netlify.app/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-accent-light hover:text-white transition-colors">
+                            Live Demo <i class="fas fa-arrow-up-right-from-square text-xs"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 rounded-2xl p-6 backdrop-blur-sm border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 transform hover:scale-105 group">
-                    <div class="bg-gradient-to-br from-purple-600 to-pink-600 w-full h-48 rounded-xl mb-6 flex items-center justify-center group-hover:from-purple-500 group-hover:to-pink-500 transition-all duration-300">
-                        <img src="icon/stm.svg" alt="Smart Task Manager" class="w-20 h-20">
+                <div class="reveal group rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-accent/40 transition-colors">
+                    <div class="h-44 overflow-hidden">
+                        <img src="icon/stm.svg" alt="Smart Task Manager preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-purple-400">Smart Task Manager</h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">A simple and powerful tool to organize, prioritize, and track tasks.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-blue-600/20 text-blue-300 px-3 py-1 rounded-full text-xs">JavaScript</span>
-                        <span class="bg-yellow-600/20 text-yellow-300 px-3 py-1 rounded-full text-xs">React</span>
-                        <span class="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-full text-xs">Vite</span>
-                    </div>
-                    <div class="flex space-x-4">
-                        <!-- <a href="https://github.com/WanAlif/Smart-Task-Manager" class="text-blue-400 hover:text-blue-300 transition-colors">
-                            <i class="fab fa-github mr-2"></i>Code -->
-                        </a>
-                        <a href="https://stmanager.netlify.app/" class="text-purple-400 hover:text-purple-300 transition-colors">
-                            <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                    <div class="p-6">
+                        <h3 class="font-display text-lg font-semibold text-white mb-2">Smart Task Manager</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">A simple and powerful tool to organise, prioritise, and track tasks day to day.</p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-slate-400 text-xs">JavaScript</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-slate-400 text-xs">React</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-slate-400 text-xs">Vite</span>
+                        </div>
+                        <a href="https://stmanager.netlify.app/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-accent-light hover:text-white transition-colors">
+                            Live Demo <i class="fas fa-arrow-up-right-from-square text-xs"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 rounded-2xl p-6 backdrop-blur-sm border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 transform hover:scale-105 group">
-                    <div class="bg-gradient-to-br from-green-600 to-teal-600 w-full h-48 rounded-xl mb-6 flex items-center justify-center group-hover:from-green-500 group-hover:to-teal-500 transition-all duration-300">
-                        <img src="icon/wd.png" alt="WanDrobe" class="w-20 h-20">
+                <div class="reveal group rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-accent/40 transition-colors">
+                    <div class="h-44 overflow-hidden">
+                        <img src="icon/wd.png" alt="WanDrobe Boutique preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-green-400">WanDrobe Boutique</h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">(Tech: TypeScript, Tailwind CSS)</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-yellow-600/20 text-yellow-300 px-3 py-1 rounded-full text-xs">Tailwind CSS</span>
-                        <span class="bg-blue-600/20 text-blue-300 px-3 py-1 rounded-full text-xs">TypeScript</span>
-                    </div>
-                    <div class="flex space-x-4">
-                        <!-- <a href="https://github.com/WanAlif/WanDrobe" class="text-blue-400 hover:text-blue-300 transition-colors">
-                            <i class="fab fa-github mr-2"></i>Code -->
-                        </a>
-                        <a href="https://wandrobe.netlify.app/" class="text-purple-400 hover:text-purple-300 transition-colors">
-                            <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                    <div class="p-6">
+                        <h3 class="font-display text-lg font-semibold text-white mb-2">WanDrobe Boutique</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">A boutique storefront concept styled with a clean, modern component system.</p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-slate-400 text-xs">TypeScript</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 text-slate-400 text-xs">Tailwind CSS</span>
+                        </div>
+                        <a href="https://wandrobe.netlify.app/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-accent-light hover:text-white transition-colors">
+                            Live Demo <i class="fas fa-arrow-up-right-from-square text-xs"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-12">
-                <a href="#" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
-                    View All Projects
+
+            <div class="reveal text-center mt-14">
+                <a href="https://github.com/WanAlif" target="_blank" rel="noopener" class="inline-flex items-center gap-2 border border-white/15 hover:border-white/30 hover:bg-white/5 text-white px-6 py-3 rounded-lg font-semibold text-sm transition-colors">
+                    See more on GitHub <i class="fab fa-github"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Resume Section -->
-    <section id="resume" class="py-20 bg-black/20">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Resume</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
-                <a href="https://drive.google.com/file/d/1P1BVs-5DlZuoIuuu1ed3jgyYhIuabPPC/view?usp=sharing" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-3 rounded-full font-semibold transition-all duration-300 inline-flex items-center" target="_blank" rel="noopener">
-                    Download Resume
+    <section id="resume" class="py-24 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="reveal mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+                <div>
+                    <p class="text-accent-light text-sm font-semibold tracking-widest uppercase mb-3">Resume</p>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">Experience & education</h2>
+                </div>
+                <a href="https://drive.google.com/file/d/1P1BVs-5DlZuoIuuu1ed3jgyYhIuabPPC/view?usp=sharing" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-lg font-semibold text-sm transition-colors shrink-0">
+                    <i class="fas fa-download text-xs"></i> Download Resume
                 </a>
             </div>
+
             <div class="grid md:grid-cols-2 gap-12">
                 <!-- Experience -->
-                <div>
-                    <h3 class="text-2xl font-semibold mb-8 text-blue-400 flex items-center">
-                        <i class="fas fa-briefcase mr-3"></i>Experience
+                <div class="reveal">
+                    <h3 class="font-display text-xl font-semibold mb-6 text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-accent/15 text-accent-light flex items-center justify-center"><i class="fas fa-briefcase text-sm"></i></span>
+                        Experience
                     </h3>
-                    <div class="space-y-8">
-                        <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 p-6 rounded-xl backdrop-blur-sm border border-gray-700/50">
-                            <h4 class="text-lg font-semibold text-white">Junior Fullstack Developer</h4>
-                            <p class="text-purple-400 mb-2">Latitude Innovations Sdn Bhd • Dec 2025 - Present</p>
-                            <p class="text-gray-400 leading-relaxed">- Engineered a real-time car auction platform using Laravel and React via Inertia.js, utilizing Vite for optimized frontend bundling and near-instant HMR during development.</p>
-                            <p class="text-gray-400 leading-relaxed">- Converted UI/UX designs into a library of reusable, modular React components, ensuring clean code and a consistent design system across the application.</p>
-                            <p class="text-gray-400 leading-relaxed">- Integrated frontend components with WebSockets and RESTful APIs to enable live bidding updates and seamless data flow without manual page refreshes.</p>
-                            <p class="text-gray-400 leading-relaxed">- Developed and consumed RESTful APIs within the Laravel ecosystem, optimized application load times and ensured cross-browser compatibility and mobile responsiveness.</p>
-                            <p class="text-gray-400 leading-relaxed">- Performed unit testing with React testing Library and participated in Agile development workflows using JIRA and Git for version control and collaborative task management.</p>
+                    <div class="space-y-6">
+                        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+                            <h4 class="font-semibold text-white">Junior Fullstack Developer</h4>
+                            <p class="text-accent-light text-sm mb-3">Latitude Innovations Sdn Bhd • Dec 2025 – Present</p>
+                            <ul class="text-slate-400 text-sm leading-relaxed space-y-2 list-disc list-inside marker:text-slate-600">
+                                <li>Engineered a real-time car auction platform using Laravel and React via Inertia.js, using Vite for optimised bundling and near-instant HMR.</li>
+                                <li>Converted UI/UX designs into a library of reusable, modular React components for a consistent design system.</li>
+                                <li>Integrated frontend with WebSockets and RESTful APIs for live bidding updates without manual page refreshes.</li>
+                                <li>Developed and consumed RESTful APIs in the Laravel ecosystem, optimising load times and ensuring cross-browser and mobile compatibility.</li>
+                                <li>Performed unit testing with React Testing Library and worked Agile with JIRA and Git.</li>
+                            </ul>
                         </div>
-                                        
                     </div>
                 </div>
 
                 <!-- Education -->
-                <div>
-                    <h3 class="text-2xl font-semibold mb-8 text-blue-400 flex items-center">
-                        <i class="fas fa-graduation-cap mr-3"></i>Education & Certifications
+                <div class="reveal">
+                    <h3 class="font-display text-xl font-semibold mb-6 text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-accent/15 text-accent-light flex items-center justify-center"><i class="fas fa-graduation-cap text-sm"></i></span>
+                        Education & Certifications
                     </h3>
-                    <div class="space-y-8">
-                        
-                        <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 p-6 rounded-xl backdrop-blur-sm border border-gray-700/50">
-                            <h4 class="text-lg font-semibold text-white">Full-Stack Web Development Bootcamp </h4>
-                            <a href="https://drive.google.com/file/d/1Hr-QrJqhHFF_zIFFIT-PlB_U5QsCttAH/view" class="text-blue-400 hover:underline">View Certificate</a>
-                            <p class="text-purple-400 mb-2">Udemy • 2025</p>
-                            <p class="text-gray-400 leading-relaxed">Learned and master modern full-stack web development by using the latest technologies including JavaScript, React, Node.js, and Web3 to build powerful frontend and backend applications.</p>
+                    <div class="space-y-4 max-h-[36rem] overflow-y-auto pr-2 -mr-2">
+                        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                            <h4 class="font-semibold text-white text-sm">Full-Stack Web Development Bootcamp</h4>
+                            <p class="text-accent-light text-xs mt-1 mb-2">Udemy • 2025</p>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-2">Modern full-stack development using JavaScript, React, Node.js, and Web3 to build frontend and backend applications.</p>
+                            <a href="https://drive.google.com/file/d/1Hr-QrJqhHFF_zIFFIT-PlB_U5QsCttAH/view" target="_blank" rel="noopener" class="text-xs font-semibold text-accent-light hover:text-white transition-colors">View Certificate →</a>
                         </div>
-                        <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 p-6 rounded-xl backdrop-blur-sm border border-gray-700/50">
-                            <h4 class="text-lg font-semibold text-white">FrontEnd Development</h4>
-                            <a href="https://drive.google.com/file/d/1k-YZOEvtVbnHZecqcqDPTQ2PdmiUy9VQ/view?usp=sharing" class="text-blue-400 hover:underline">View Certificate</a>
-                            <p class="text-purple-400 mb-2">Simplelearn • 2025</p>
-                            <p class="text-gray-400 leading-relaxed">Gained a solid foundation in frontend development, including version control with Git & GitHub, web structure and styling using HTML, CSS, animations, and effects, and building dynamic, interactive applications with JavaScript, React.js, and Angular services.</p>
-                        </div> 
-                        <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 p-6 rounded-xl backdrop-blur-sm border border-gray-700/50">
-                            <h4 class="text-lg font-semibold text-white">Diploma in HTML5, CSS3 and JavaScript</h4>
-                            <a href="https://drive.google.com/file/d/1vNEGoE_3Xrzawqkj9eRvzmvJibEGjauR/view?usp=sharing" class="text-blue-400 hover:underline">View Certificate</a>
-                            <p class="text-purple-400 mb-2">Alison Empower Yourself • 2025</p>
-                            <p class="text-gray-400 leading-relaxed">Acquired skills in creating structured web pages with HTML5 and CSS3, adding interactivity through JavaScript (DOM manipulation, loops, events), and enhancing functionality with jQuery.</p>
+                        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                            <h4 class="font-semibold text-white text-sm">Frontend Development</h4>
+                            <p class="text-accent-light text-xs mt-1 mb-2">SimpleLearn • 2025</p>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-2">Solid foundation in Git & GitHub, HTML/CSS structure and styling, and interactive apps with JavaScript, React.js and Angular.</p>
+                            <a href="https://drive.google.com/file/d/1k-YZOEvtVbnHZecqcqDPTQ2PdmiUy9VQ/view?usp=sharing" target="_blank" rel="noopener" class="text-xs font-semibold text-accent-light hover:text-white transition-colors">View Certificate →</a>
                         </div>
-                        <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 p-6 rounded-xl backdrop-blur-sm border border-gray-700/50">
-                            <h4 class="text-lg font-semibold text-white">WordPress Masterclass</h4>
-                            <a href="https://drive.google.com/file/d/1TjGe8BZ4zhoYdTVOA5VVtlUfA8cw77cd/view?usp=sharing" class="text-blue-400 hover:underline">View Certificate</a>
-                            <p class="text-purple-400 mb-2">Alison Empower Yourself • 2025</p>
-                            <p class="text-gray-400 leading-relaxed">Learned how to confidently build and manage professional WordPress websites from start to finish — including domain setup, theme customization, plugins, and Google Analytics.</p>
+                        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                            <h4 class="font-semibold text-white text-sm">Diploma in HTML5, CSS3 and JavaScript</h4>
+                            <p class="text-accent-light text-xs mt-1 mb-2">Alison Empower Yourself • 2025</p>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-2">Structured web pages with HTML5/CSS3, interactivity through JavaScript (DOM, loops, events), and jQuery.</p>
+                            <a href="https://drive.google.com/file/d/1vNEGoE_3Xrzawqkj9eRvzmvJibEGjauR/view?usp=sharing" target="_blank" rel="noopener" class="text-xs font-semibold text-accent-light hover:text-white transition-colors">View Certificate →</a>
                         </div>
-                        <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 p-6 rounded-xl backdrop-blur-sm border border-gray-700/50">
-                            <h4 class="text-lg font-semibold text-white">React JavaScript - Fundamentals to Coding & New Beginnings</h4>
-                            <a href="https://drive.google.com/file/d/1VqzoE_oke3St7a9G6Nvi9PFBbPwoCCjU/view?usp=sharing" class="text-blue-400 hover:underline">View Certificate</a>
-                            <p class="text-purple-400 mb-2">Alison Empower Yourself • 2025</p>
-                            <p class="text-gray-400 leading-relaxed">React.js course covering JSX, components, props, conditional rendering, events, lists, keys, forms, and CSS styling to build interactive and maintainable web applications.</p>
+                        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                            <h4 class="font-semibold text-white text-sm">WordPress Masterclass</h4>
+                            <p class="text-accent-light text-xs mt-1 mb-2">Alison Empower Yourself • 2025</p>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-2">Building and managing professional WordPress sites — domain setup, theme customisation, plugins, Google Analytics.</p>
+                            <a href="https://drive.google.com/file/d/1TjGe8BZ4zhoYdTVOA5VVtlUfA8cw77cd/view?usp=sharing" target="_blank" rel="noopener" class="text-xs font-semibold text-accent-light hover:text-white transition-colors">View Certificate →</a>
                         </div>
-                        <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 p-6 rounded-xl backdrop-blur-sm border border-gray-700/50">
-                            <h4 class="text-lg font-semibold text-white">Python Programming with Practical</h4>
-                            <a href="https://drive.google.com/file/d/1YEHe3j32O66myNAVpm4eRWmN0etNbIIq/view?usp=sharing" class="text-blue-400 hover:underline">View Certificate</a>
-                            <p class="text-purple-400 mb-2">IrfanMG Consultans (IMGC) • 2025</p>
-                            <p class="text-gray-400 leading-relaxed">The program covered python fundamentals including variables, data types, control structures, functions, file handling, Object-Oriented Programming (OOP) and a basic GUI development.</p>
+                        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                            <h4 class="font-semibold text-white text-sm">React JavaScript — Fundamentals to Coding & New Beginnings</h4>
+                            <p class="text-accent-light text-xs mt-1 mb-2">Alison Empower Yourself • 2025</p>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-2">JSX, components, props, conditional rendering, events, lists, keys, forms, and CSS styling.</p>
+                            <a href="https://drive.google.com/file/d/1VqzoE_oke3St7a9G6Nvi9PFBbPwoCCjU/view?usp=sharing" target="_blank" rel="noopener" class="text-xs font-semibold text-accent-light hover:text-white transition-colors">View Certificate →</a>
                         </div>
-                        <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 p-6 rounded-xl backdrop-blur-sm border border-gray-700/50">
-                            <h4 class="text-lg font-semibold text-white">Bachelor of Mechanical Engineering (Manufacturing) With Honours</h4>
-                            <p class="text-purple-400 mb-2">UITM University of Technology Pulau Pinang Campus Permatang Pauh Branch • 2022 - 2025</p>
-                            
+                        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                            <h4 class="font-semibold text-white text-sm">Python Programming with Practical</h4>
+                            <p class="text-accent-light text-xs mt-1 mb-2">IrfanMG Consultans (IMGC) • 2025</p>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-2">Python fundamentals — variables, data types, control structures, functions, file handling, OOP, and basic GUI development.</p>
+                            <a href="https://drive.google.com/file/d/1YEHe3j32O66myNAVpm4eRWmN0etNbIIq/view?usp=sharing" target="_blank" rel="noopener" class="text-xs font-semibold text-accent-light hover:text-white transition-colors">View Certificate →</a>
                         </div>
-                        
+                        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                            <h4 class="font-semibold text-white text-sm">Bachelor of Mechanical Engineering (Manufacturing) With Honours</h4>
+                            <p class="text-accent-light text-xs mt-1">UITM University of Technology Pulau Pinang Campus, Permatang Pauh Branch • 2022 – 2025</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -371,264 +411,146 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Get In Touch</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
-                <p class="text-gray-400 max-w-2xl mx-auto">I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.</p>
+    <section id="contact" class="py-24 border-t border-white/5 bg-ink-900/40">
+        <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+            <p class="text-accent-light text-sm font-semibold tracking-widest uppercase mb-3 reveal">Contact</p>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-4 reveal">Let's build something together</h2>
+            <p class="text-slate-400 max-w-xl mx-auto mb-10 reveal">I'm always open to discussing new opportunities, interesting projects, or just talking about technology.</p>
+
+            <div class="reveal inline-flex flex-col sm:flex-row items-center gap-4 mb-10">
+                <a href="mailto:wanalifnorazlan@gmail.com" class="inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white px-6 py-3.5 rounded-lg font-semibold text-sm transition-colors">
+                    <i class="fas fa-envelope"></i> wanalifnorazlan@gmail.com
+                </a>
             </div>
-            <div class="text-center">
-                <!-- Contact Info -->
-                <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                    <div class="flex flex-col items-center space-y-4">
-                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-full">
-                            <i class="fas fa-envelope text-white text-xl"></i>
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-lg font-semibold mb-2">Wan Alif Wan Norazlan</h3>
-                            <p class="text-gray-400">wanalifnorazlan@gmail.com</p>
-                        </div>
-                    </div>
-                    <!-- <div class="flex flex-col items-center space-y-4">
-                        <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-full">
-                            <i class="fas fa-phone text-white text-xl"></i>
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-lg font-semibold mb-2">Phone</h3>
-                            <p class="text-gray-400">+60 133 012 100</p>
-                        </div>
-                    </div> -->
-                    <!-- <div class="flex flex-col items-center space-y-4">
-                        <div class="bg-gradient-to-r from-green-600 to-teal-600 p-4 rounded-full">
-                            <i class="fas fa-map-marker-alt text-white text-xl"></i>
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-lg font-semibold mb-2">Location</h3>
-                            <p class="text-gray-400">Rawang, Selangor</p>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="flex justify-center space-x-6 mt-12">
-                    <a href="https://www.linkedin.com/in/wan-alif-00014wana/" class="bg-gray-800 hover:bg-blue-600 p-4 rounded-full transition-colors transform hover:scale-110">
-                        <i class="fab fa-linkedin text-white text-xl"></i>
-                    </a>
-                    <a href="https://github.com/WanAlif" class="bg-gray-800 hover:bg-gray-700 p-4 rounded-full transition-colors transform hover:scale-110">
-                        <i class="fab fa-github text-white text-xl"></i>
-                    </a>
-                        
-                
-                </div>
+
+            <div class="reveal flex justify-center gap-4">
+                <a href="https://www.linkedin.com/in/wan-alif-00014wana/" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-300 hover:text-white hover:border-white/25 hover:bg-white/5 transition-colors">
+                    <i class="fab fa-linkedin text-lg"></i>
+                </a>
+                <a href="https://github.com/WanAlif" target="_blank" rel="noopener" aria-label="GitHub" class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-300 hover:text-white hover:border-white/25 hover:bg-white/5 transition-colors">
+                    <i class="fab fa-github text-lg"></i>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black/30 py-8 border-t border-gray-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-center md:text-left mb-4 md:mb-0">
-                    <p class="text-gray-400">&copy; 2025 Wan Alif Wan Norazlan. All rights reserved.</p>
-                </div>
-                <div class="flex space-x-4">
-                    <a href="https://www.linkedin.com/in/wan-alif-00014wana/" class="text-gray-400 hover:text-blue-400 transition-colors">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/WanAlif" class="text-gray-400 hover:text-gray-300 transition-colors">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    
-                    
-                </div>
+    <footer class="border-t border-white/5 py-8">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-500 text-sm" id="footer-year">&copy; 2026 Wan Alif Wan Norazlan. All rights reserved.</p>
+            <div class="flex gap-5">
+                <a href="https://www.linkedin.com/in/wan-alif-00014wana/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-slate-500 hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/WanAlif" target="_blank" rel="noopener" aria-label="GitHub" class="text-slate-500 hover:text-white transition-colors"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
         mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
         });
 
-        // Smooth scrolling for navigation links
+        // Smooth scroll + close mobile menu
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
                 }
             });
         });
 
         // Navbar background on scroll
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-black/40');
-            } else {
-                navbar.classList.remove('bg-black/40');
-            }
+            navbar.classList.toggle('bg-ink-950/90', window.scrollY > 20);
         });
 
-        // Active navigation link highlighting
-        const sections = document.querySelectorAll('section');
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
-
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
+                if (window.scrollY >= sectionTop - 200) {
                     current = section.getAttribute('id');
                 }
             });
-
             navLinks.forEach(link => {
-                link.classList.remove('text-blue-400');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('text-blue-400');
-                }
+                link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
             });
         });
 
-        
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Reveal-on-scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-slide-up');
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Observe elements for animation
-        document.querySelectorAll('.animate-slide-up').forEach(el => {
-            observer.observe(el);
-        });
-        
+        // Typing effect for role
+        const roles = ['Fullstack Developer', 'React & Laravel Developer', 'Frontend Engineer'];
+        const roleElement = document.getElementById('typed-role');
+        let roleIndex = 0, charIndex = 0, isDeleting = false;
 
-        
-
-        // Dynamic typing effect (optional enhancement)
-        const roles = ['Software Developer', 'Fullstack Developer'];
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const roleElement = document.querySelector('#home h2');
-        
         function typeRole() {
             const currentRole = roles[roleIndex];
-            
-            if (isDeleting) {
-                roleElement.textContent = currentRole.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                roleElement.textContent = currentRole.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            
-            let typeSpeed = isDeleting ? 100 : 200;
-            
+            roleElement.textContent = isDeleting
+                ? currentRole.substring(0, charIndex - 1)
+                : currentRole.substring(0, charIndex + 1);
+            charIndex += isDeleting ? -1 : 1;
+
+            let typeSpeed = isDeleting ? 45 : 90;
             if (!isDeleting && charIndex === currentRole.length) {
-                typeSpeed = 2000;
+                typeSpeed = 1800;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 roleIndex = (roleIndex + 1) % roles.length;
-                typeSpeed = 500;
+                typeSpeed = 400;
             }
-            
             setTimeout(typeRole, typeSpeed);
         }
-        
-        // Start typing effect after page loads
-        setTimeout(typeRole, 1000);
+        setTimeout(typeRole, 600);
 
-        // Add scroll-to-top functionality
+        // Scroll-to-top button
+        let scrollBtn = null;
         window.addEventListener('scroll', () => {
-            const scrollBtn = document.getElementById('scroll-to-top');
-            if (window.pageYOffset > 300) {
+            if (window.pageYOffset > 400) {
                 if (!scrollBtn) {
-                    const btn = document.createElement('button');
-                    btn.id = 'scroll-to-top';
-                    btn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-                    btn.className = 'fixed bottom-8 right-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-full shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-110 z-50';
-                    btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-                    document.body.appendChild(btn);
+                    scrollBtn = document.createElement('button');
+                    scrollBtn.id = 'scroll-to-top';
+                    scrollBtn.setAttribute('aria-label', 'Scroll to top');
+                    scrollBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+                    scrollBtn.className = 'fixed bottom-8 right-8 w-11 h-11 flex items-center justify-center bg-accent hover:bg-accent-dark text-white rounded-xl shadow-lg transition-colors z-50';
+                    scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+                    document.body.appendChild(scrollBtn);
                 }
-            } else {
-                const scrollBtn = document.getElementById('scroll-to-top');
-                if (scrollBtn) {
-                    scrollBtn.remove();
-                }
+            } else if (scrollBtn) {
+                scrollBtn.remove();
+                scrollBtn = null;
             }
         });
 
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
+        // Footer year
+        document.getElementById('footer-year').innerHTML =
+            `&copy; ${new Date().getFullYear()} Wan Alif Wan Norazlan. All rights reserved.`;
+
+        window.addEventListener('load', () => document.body.classList.add('loaded'));
     </script>
-
-    <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #2563eb, #7c3aed);
-        }
-
-        /* Smooth transitions */
-        * {
-            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        /* Loading state */
-        body {
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-        
-        body.loaded {
-            opacity: 1;
-        }
-
-        /* Enhanced hover effects */
-        .group:hover .group-hover\:from-blue-500 {
-            background-image: linear-gradient(to bottom right, rgb(59 130 246), rgb(147 51 234));
-        }
-        
-        .group:hover .group-hover\:to-purple-500 {
-            background-image: linear-gradient(to bottom right, rgb(59 130 246), rgb(147 51 234));
-        }
-    </style>
 </body>
 </html>
