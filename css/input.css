@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #07080c;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  body.loaded {
+    opacity: 1;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Sora', sans-serif;
+  }
+}
+
+/* Subtle dot-grid texture used behind the hero */
+.bg-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0d13;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #33364a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #45485f;
+}
+
+/* Scroll-reveal animation hooks (toggled by js/main.js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Active nav link indicator */
+.nav-link.active {
+  color: #fff;
+}
+
+.nav-link.active .nav-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-dot {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.25s ease;
+}
+
+/* Typing-effect cursor */
+.cursor-bar {
+  border-right: 2px solid #9694ff;
+}

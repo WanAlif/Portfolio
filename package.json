@@ -1,0 +1,13 @@
+{
+  "name": "wan-alif-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal portfolio site for Wan Alif Wan Norazlan.",
+  "scripts": {
+    "build": "tailwindcss -i ./css/input.css -o ./dist/output.css --minify",
+    "watch": "tailwindcss -i ./css/input.css -o ./dist/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
+  }
+}
